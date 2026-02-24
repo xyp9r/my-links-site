@@ -94,10 +94,10 @@ function updateWakaText() {
 
 	if (wakaLangText && wakaEditorText) {
 		// Если вакатайм отдал языки и редактор
-		langEl.innerText = `7d stack: ${wakaLangText} in ${wakaEditorText}`;
+		langEl.innerText = `today: ${wakaLangText} in ${wakaEditorText}`;
 	} else if (wakaLangText) {
 		// Редактор пока недоступен
-		langEl.innerText = `7d stack: ${wakaLangText}`;
+		langEl.innerText = `today: ${wakaLangText}`;
 	} else {
 		// Загрузка если кэш вакатайм пустой
 		langEl.innerText = "system processing...";
