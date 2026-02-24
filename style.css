@@ -99,6 +99,7 @@ a, .email-btn, .menu-list li {
 	font-size: 10px;
 	color: #444;
 	overflow: hidden;
+	flex-shring: 0;
 }
 
 .image-placeholder img {
@@ -350,4 +351,44 @@ a, .email-btn, .menu-list li {
 	font-size: 11px;
 	color: #555;
 	background-color: #0a0a0a;
+}
+
+/* 12. Адаптация под мобилки */
+@media (max-width: 768px) {
+	/* 1. Фиксим терминал: делаем отступы меньше, чтобы сэкономить место */
+	.terminal-window {
+		width: 95%;
+		padding: 15px;
+	}
+
+	/* Уменьшаем большой текст */
+	.ascii-art {
+		font-size: 4.1px;
+		overflow-x: auto;
+	}
+
+	.info-block {
+		gap: 15px;
+	}
+
+	.image-placeholder {
+		width: 350px;
+		height: 140px;
+	}
+
+	/* 3. Ставим блоки Spotify и WakaTime друг под друга */
+	.status-blocks {
+		flex-direction: column !important;
+		gap: 15px;
+	}
+
+	/* Сами карточки растягиваем на всю ширину мобилки */
+	.status-panel {
+		width: 100% !important;
+		box-sizing: border-box;
+	}
+
+	body {
+		overflow-x: hidden;
+	}
 }
