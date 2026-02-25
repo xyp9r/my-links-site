@@ -154,6 +154,13 @@ a, .email-btn, .menu-list li {
 	margin-left: 5px;
 }
 
+#discord-status {
+	font-size: 12px !important;
+	margin-left: 5px;
+	font-weight: normal;
+	transition: color 0.3s ease;
+}
+
 .status-online-fake {
 	color: #4caf50;
 	font-size: 12px;

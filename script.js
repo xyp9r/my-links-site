@@ -251,3 +251,47 @@ window.menuAction = function(action) {
 		location.reload();
 	}
 };
+
+// --- 7. ЖИВОЙ СТАТУС DISCORD (LANYARD API) ---
+const discordId = '547038572302172161'; 
+const discordStatusEl = document.getElementById('discord-status');
+
+if (discordStatusEl) {
+	// Подключаюсь к матрице Lanyard через вебсокеты
+	const socket = new WebSocket('wss://api.lanyard.rest/socket');
+
+	socket.addEventListener('message', (event) => {
+		const msg = JSON.parse(event.data);
+
+		// Шаг 1 - сервер просит поздороваться
+		if (msg.op === 1) {
+            socket.send(JSON.stringify({ 
+                op: 2, 
+                d: { subscribe_to_id: discordId } 
+            }));
+        }
+
+        // Шаг 2 - сервер присылает наш статус
+        if (msg.t === 'INIT_STATE' || msg.t === 'PRESENCE_UPDATE') {
+        	const status = msg.d.discord_status;
+
+        	let statusText = '[offline]';
+        	let color = '#555';
+
+        	if (status === 'online') {
+        		statusText = '[online]';
+        		color = '#4caf50';
+        	} else if (status === 'idle') {
+        		statusText = '[idle]';
+        		color = '#fbc02d';
+        	} else if (status === 'dnd') {
+        		statusText = '[dnd]';
+        		color = '#f44336';
+        	}
+
+        	// Обновляем текст и цвет на сайте
+        	discordStatusEl.innerText = statusText;
+        	discordStatusEl.style.color = color;
+        };
+	});
+}
