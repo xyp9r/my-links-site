@@ -161,6 +161,20 @@ a, .email-btn, .menu-list li {
 	transition: color 0.3s ease;
 }
 
+.discord-activity {
+	display: none;
+	font-size: 11px;
+	color: #888;
+	margin-top: 5px;
+	margin-left: 28px;
+}
+
+.discord-activity .green-arrow {
+	color: #4caf50;
+	margin-right: 4px;
+	font-size: 9px;
+}
+
 .status-online-fake {
 	color: #4caf50;
 	font-size: 12px;

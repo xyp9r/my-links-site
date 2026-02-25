@@ -255,6 +255,7 @@ window.menuAction = function(action) {
 // --- 7. ЖИВОЙ СТАТУС DISCORD (LANYARD API) ---
 const discordId = '547038572302172161'; 
 const discordStatusEl = document.getElementById('discord-status');
+const discordActivityEl = document.getElementById('discord-activity');
 
 if (discordStatusEl) {
 	// Подключаюсь к матрице Lanyard через вебсокеты
@@ -292,6 +293,19 @@ if (discordStatusEl) {
         	// Обновляем текст и цвет на сайте
         	discordStatusEl.innerText = statusText;
         	discordStatusEl.style.color = color;
+
+        	const activities = msg.d.activities;
+        	const game = activities.find(a => a.type === 0);
+        	console.log('Данные от Дискорда:', activities);
+
+        	if (game) {
+        		// Если игра запущена, собираем красивую строчку и показываем
+        		discordActivityEl.innerHTML = `<span class="green-arrow">▶</span> playing: ${game.name}`;
+        		discordActivityEl.style.display = 'block';
+        	} else {
+        		// Если игр нет то прячем блок
+        		discordActivityEl.style.display = 'none';
+        	}
         };
 	});
 }
