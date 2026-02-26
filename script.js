@@ -207,8 +207,26 @@ const customMenu = document.getElementById('custom-menu');
 document.addEventListener('contextmenu', (e) => {
 	e.preventDefault(); // убираем скучно меню браузера
 
+	const menu = document.getElementById('custom-menu');
+	menu.style.display = 'block';
+	menu.style.left = e.pageX = 'px';
+	menu.style.top = e.pageY = 'px';
+
+	// --- НОВАЯ ЛОГИКА ДЛЯ КНОПКИ КОПИРОВАТЬ ---
+	const copyBtn = document.getElementById('menu-copy');
+	// получаем текст который сейчас выделен на странице
+	const selectedText = window.getSelection().toString().trim();
+
+	if (selectedText.length > 0) {
+		// Если текст есть - включаем кнопку
+		copyBtn.classList.remove('disabled-item');
+	} else {
+		// Если текста нет выключаем кнопку
+		copyBtn.classList.add('disabled-item');
+	}
+
 	// Показываю свое меню
-	customMenu.style.display = 'block';
+customMenu.style.display = 'block';
 
 	// рассчитываем координаты, чтобы меню не вылезало за края экрана
 	let x = e.clientX;
@@ -223,7 +241,7 @@ document.addEventListener('contextmenu', (e) => {
 
 	customMenu.style.left = `${x}px`;
 	customMenu.style.top = `${y}px`;
-});
+}); 
 
 // Закрываем левым кликом куда угодно
 document.addEventListener('click' , (e) => {
