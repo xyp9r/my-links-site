@@ -47,6 +47,19 @@
 			</div>
 	</div>
 
+	<div id="custom-menu" class="custom-menu">
+                <div class="menu-header">
+                    <span class="prompt">root@v4mp.dev</span> :~$ context-menu </div>
+                    <ul class="menu-list">
+                        <li onclick="menuAction('copy')" id="menu-copy"><span class="green-arrow">▶</span> Copy</li>
+                        <li onclick="menuAction('selectAll')"><span class="green-arrow">▶</span> Select all</li>
+                        <li onclick="menuAction('reload')"><span class="green-arrow">▶</span> Reload</li>
+                    </ul>
+                    <div class="menu-footer">
+                        ESC | Close
+                    </div>
+                </div>
+
 	<script src="script.js"></script>
 </body>
 </html>
