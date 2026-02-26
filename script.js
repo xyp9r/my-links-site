@@ -309,3 +309,31 @@ if (discordStatusEl) {
         };
 	});
 }
+// --- 8. СМЕНА ПОЧТЫ ---
+window.switchEmail = function(region, event) {
+	// Блокируем открытие почтового клиента при клике на кнопку
+	event.preventDefault();
+
+	const emailText = document.getElementById('email-text');
+	const emailLink = document.getElementById('email-link');
+	const badgeEu = document.getElementById('badge-eu');
+	const badgeUs = document.getElementById('badge-us'); // Исправил опечатку bagdeUs
+
+	if (region === 'eu') {
+		// Настройки для европы (текущие)
+		emailText.innerText = 'i@v4mp.eu';
+		emailLink.href = 'mailto:sirenko.ivan77@gmail.com';
+
+		// Переключаем визуал кнопок
+		badgeEu.style.opacity = '1';
+		badgeUs.style.opacity = '0.5';
+	} else if (region === 'us') {
+		// Настройки для сша
+		emailText.innerText = 'i@v4mp.us';
+		emailLink.href = 'mailto:sirenko.ivan77@gmail.com'; // Сюда потом впишешь свою US почту
+
+		// Переключаем визуал кнопок
+		badgeUs.style.opacity = '1';
+		badgeEu.style.opacity = '0.5'; // Исправил запятую на точку
+	}
+};

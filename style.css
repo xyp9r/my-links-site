@@ -190,6 +190,11 @@ a, .email-btn, .menu-list li {
 	font-weight: bold;
 	margin-left: 5px;
 	text-transform: uppercase;
+	transition: opacity 0.3s ease;
+}
+
+.badge:hover {
+	opacity: 0.8 !important;
 }
 
 /* --- 8. БЛОКИ СПОТИФАЙ И АКТИВНОСТЬ --- */
