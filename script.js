@@ -355,3 +355,34 @@ window.switchEmail = function(region, event) {
 		badgeEu.style.opacity = '0.5'; // Исправил запятую на точку
 	}
 };
+
+// --- 7. TG LIVE STATUS ---
+const tgStatusElement = document.getElementById('tg-status');
+
+if (tgStatusElement) {
+	// подключаемся к живому серверу
+	const tgStream = new EventSource('https://v4mp-tg-api.onrender.com/stream');
+
+	tgStream.onmessage = function(event) {
+		const data = JSON.parse(event.data);
+
+		if (data.status === 'online') {
+			tgStatusElement.textContent = '[online]';
+			tgStatusElement.className = 'status online';
+		} else if (data.status === 'offline') {
+			if (data.last_online) {
+				tgStatusElement.textContent = `[last seen: ${data.last_online}`;
+			} else {
+				tgStatusElement.textContent = '[offline]';
+			}
+			tgStatusElement.className = 'status offline';
+		} else {
+			tgStatusElement.textContent = '[unknown]';
+			tgStatusElement.className = 'status offline';
+		}
+	};
+	tgStream.onerror = function() {
+		tgStatusElement.textContent = '[connecting...]';
+		tgStatusElement.className = 'status offline';
+	}
+}
