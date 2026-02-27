@@ -386,3 +386,49 @@ if (tgStatusElement) {
 		tgStatusElement.className = 'status offline';
 	}
 }
+
+// --- 8. ЭФФЕКТ ЖИВОГО НАБОРА ТЕКСТА ---
+document.addEventListener('DOMContentLoaded', () => {
+	// находим все элементы которым дадим класс type-text
+	const typeElements = document.querySelectorAll('.type-text');
+
+	// Сохраняем оригинальный текст в память каждого элемента
+	typeElements.forEach(el => {
+		el.dataset.originalText = el.textContent;
+	});
+
+	function runTypingEffect() {
+		typeElements.forEach((el, index) => {
+			const text = el.dataset.originalText; // Берем оригинальный текст из памяти
+			el.textContent = ''; // Очищаем его на старте
+			el.classList.add('typing-cursor'); // Цепляем мигающий курсор
+
+			let i = 0;
+			const speed = 200;
+
+			// Запускаем печать с небольшой задержкой
+			// Умножаем на index чтобы строки печатались по очереди
+			setTimeout(() => {
+				function type() {
+					if (i < text.length) {
+						el.textContent += text.charAt(i);
+						i++;
+						setTimeout(type, speed);
+					} else {
+						// Когда допечатали убираем курсор через 1 секунду
+						setTimeout(() => {
+							el.classList.remove('typing-cursor');
+						}, 1000);
+					}
+				}
+				type();
+			}, 500 * index + 300); // 300мс пауза перед стартом
+		});
+	}
+
+	// Запускаем эффект в первый раз сразу при загрузке (ВНУТРИ addEventListener)
+	runTypingEffect();
+
+	// Запускаем по кругу каждые 30 секунд (30000 мс)
+	setInterval(runTypingEffect, 30000);
+});

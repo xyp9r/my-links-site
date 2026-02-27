@@ -577,3 +577,18 @@ a, .email-btn, .menu-list li {
 	color: rgb(85, 85, 85);;
 	font-size: 12px;
 }
+
+/* --- ЭФФЕКТ ПЕЧАТАЮЩЕГОСЯ ТЕКСТА И КУРСОР --- */
+
+.typing-cursor::after {
+	content: '█';
+	display: inline-block;
+	margin-left: 4px;
+	color: #4caf50;
+	animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+	0% 100% { opacity: 1; }
+	50% { opacity: 0; }
+}
