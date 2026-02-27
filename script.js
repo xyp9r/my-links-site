@@ -371,7 +371,7 @@ if (tgStatusElement) {
 			tgStatusElement.className = 'status online';
 		} else if (data.status === 'offline') {
 			if (data.last_online) {
-				tgStatusElement.textContent = `[last seen: ${data.last_online}]`;
+				tgStatusElement.textContent = `[${data.last_online}]`;
 			} else {
 				tgStatusElement.textContent = '[offline]';
 			}
