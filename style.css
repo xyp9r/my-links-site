@@ -546,6 +546,6 @@ a, .email-btn, .menu-list li {
 }
 
 #tg-status.offline {
-	color: #888888;
+	color: rgb(85, 85, 85);;
 	font-size: 12px;
 }
