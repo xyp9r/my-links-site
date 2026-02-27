@@ -27,6 +27,19 @@ a, .email-btn, .menu-list li {
 	cursor: pointer;
 }
 
+/* эффект матрицы */
+
+#matrix {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+	opacity: 0.20;
+	pointer-events: none;
+}
+
 /* --- 3. сама коробка терминала ---*/
 .terminal-window {
 	width: 95%;
