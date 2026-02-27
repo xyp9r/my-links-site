@@ -538,3 +538,14 @@ a, .email-btn, .menu-list li {
 	font-size: 10px;
 	border: 1px solid #222;
 }
+
+/* --- Стили для статуса Telegram --- */
+#tg-status.online {
+	color: #4caf50;
+	font-size: 12px;
+}
+
+#tg-status.offline {
+	color: #888888;
+	font-size: 12px;
+}
