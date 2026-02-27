@@ -471,6 +471,21 @@ a, .email-btn, .menu-list li {
 	body {
 		overflow-x: hidden;
 	}
+
+	.social-links li a {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 8px;
+		white-space: nowrap;
+	}
+
+	#tg-status {
+		font-size: 10px;
+		margin-left: 0;
+		flex-shrink: 1;
+		overflow: hidden;
+	}
 }
 
 /* --- КАРТОЧКИ ПРОЕКТОВ (projects.html) --- */
