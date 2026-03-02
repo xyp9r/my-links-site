@@ -592,3 +592,38 @@ a, .email-btn, .menu-list li {
 	0% 100% { opacity: 1; }
 	50% { opacity: 0; }
 }
+
+/* ЭКВАЛАЙЗЕР ДЛЯ ПЛЕЕРА */
+
+.equalizer {
+	display: inline-flex;
+	align-items: flex-end;
+	gap: 2px;
+	height: 12px;
+}
+
+.equalizer .bar {
+	width: 3px;
+	background-color: #555; /* серый цвет когда музыка на паузе */
+	border-radius: 1px;
+	transform-origin: bottom;
+}
+
+.is-playing .equalizer .bar {
+	background-color: #4caf50;
+	animation: bounce 1s infinite ease-in-out;
+}
+
+.is-playing .equalizer .bar1 { height: 60%; animation-delay: 0.1s; }
+.is-playing .equalizer .bar2 { height: 100%; animation-delay: 0.3s; }
+.is-playing .equalizer .bar3 { height: 80%; animation-delay: 0s; }
+
+.is-paused .equalizer .bar {
+	height: 30%;
+	animation: none;
+}
+
+@keyframes bounce {
+	0%, 100% { transform: scaleY(0.4); }
+	50% { transform: scaleY(1); }
+}

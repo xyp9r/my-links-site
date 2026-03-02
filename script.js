@@ -50,7 +50,14 @@ async function fetchSpotifyStatus() {
 		const albumCoverEl = document.querySelector('.album-cover');
 
 		// Обновляем текст и картинку
-		trackNameEl.innerHTML = `<span class = "green-bars">||</span> ${songName}`;
+		trackNameEl.innerHTML = `
+			<div class="equalizer">
+				<div class="bar bar1"></div>
+				<div class="bar bar2"></div>
+				<div class="bar bar3"></div>
+			</div>
+			${songName}
+		`;
 		trackArtistEl.innerText = `by ${artistName}`;
 
 		if (coverUrl) {
