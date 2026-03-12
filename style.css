@@ -6,7 +6,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	cursor: inherit;
+	cursor: none !important;
 }
 
 /* --- 2. ГЛАВНЫЙ ФОН ---*/
@@ -20,7 +20,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" fill="%230a0a0a" stroke="%23222" stroke-width="2"/><rect x="8" y="8" width="8" height="8" fill="%234caf50"/></svg>') 12 12, auto;
 }
 
 a, .email-btn, .menu-list li {
@@ -626,4 +625,67 @@ a, .email-btn, .menu-list li {
 @keyframes bounce {
 	0%, 100% { transform: scaleY(0.4); }
 	50% { transform: scaleY(1); }
+}
+
+/* --- УБИВАЕМ СИСТЕМНЫЙ КУРСОР ---*/
+html, body, *, *::before, *::after {
+	cursor: none !important;
+}
+
+/* --- НОВЫЙ ЖИВОЙ КУРСОР --- */
+.v4mp-cursor {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #222;
+	pointer-events: none; /* Пропускает клики скрозь себя */
+	z-index: 999999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	will-change: transform;
+	transition: box-shadow 0.3s ease; /* плавное включение неона */
+}
+
+/* Зеленая точка внутри */
+.v4mp-cursor::after {
+	content: '';
+	width: 7px;
+	height: 7px;
+	background-color: #4caf50;
+}
+
+/* Неоновая пульсация при наведении */
+.v4mp-cursor.neon-pulse {
+	animation: cursorPulse 1.2s infinite alternate ease-in-out;
+}
+
+/* сама анимация свечения */
+@keyframes cursorPulse {
+	0% {
+		box-shadow: 0 0 4px rgba(76, 175, 80, 0.4);
+	}
+	100% {
+		box-shadow: 0 0 14px rgba(76, 175, 80, 0.9), 0 0 4px rgba(76, 175, 80, 0.4) inset;
+	}
+}
+
+/* --- СЛЕД ОТ КУРСОРА --- */
+.cursor-trail {
+	position: fixed;
+	width: 6px;
+	height: 6px;
+	background-color: #4caf50;
+	pointer-events: none; /* чтобы клики проходили насквозь */
+	z-index: 999998;
+	box-shadow: 0 0 5px #4caf50; /* легкий неон */
+	/* анимация исчезновения и уменьшения за 0.4 секунды */
+	animation: fadeTrail 0.4s ease-out forwards;
+}
+
+@keyframes fadeTrail {
+	0% { opacity: 0.8; transform: scale(1);}
+	100% { opacity: 0; transform: scale(0); }
 }

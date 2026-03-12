@@ -32,6 +32,9 @@ async function fetchSpotifyStatus() {
 	try {
 		// Стучимся к Last.fm
 		const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=1`);
+
+		if(!response.ok) throw new Error(`API is down, status: ${response.status}`);
+
 		const data = await response.json();
 
 		// Достаем последний трек
@@ -438,4 +441,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Запускаем по кругу каждые 30 секунд (30000 мс)
 	setInterval(runTypingEffect, 30000);
+});
+
+// --- 9. Живой курсор ---
+document.addEventListener('DOMContentLoaded', () => {
+	// создаем главный курсор-прицел
+	const cursor = document.createElement('div');
+	cursor.classList.add('v4mp-cursor');
+	document.body.appendChild(cursor);
+
+	// Движение мыши
+	document.addEventListener('mousemove', (e) => {
+		// Главный курсор двигается моментально
+		cursor.style.transform = `translate3d(${e.clientX - 12}px, ${e.clientY - 12}px, 0)`;
+
+		// создаем шлейф
+		// роняем маленькую точку там где только что была мышь
+		const trail = document.createElement('div');
+		trail.classList.add('cursor-trail');
+		// смещаем на 3px влево и вверх чтобы точка падала ровно из центра прицела
+		trail.style.left = `${e.clientX - 3}px`;
+		trail.style.top = `${e.clientY - 3}px`;
+
+		document.body.appendChild(trail);
+
+		// удаляем точку из хтмл через 400мс когда закончиться css анимация чтобы не засирать память
+		setTimeout(() => {
+			trail.remove();
+		}, 400);
+	});
+
+	// неоновая пульсация при наведении на ссылки
+	const interactables = document.querySelectorAll('a, button, .menu-list li ');
+	interactables.forEach(el => {
+		el.addEventListener('mouseenter', () => cursor.classList.add('neon-pulse'));
+		el.addEventListener('mouseleave', () => cursor.classList.remove('neon-pulse'));
+	});
 });
