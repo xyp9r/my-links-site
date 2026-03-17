@@ -498,6 +498,14 @@ a, .email-btn, .menu-list li {
 		flex-shrink: 1;
 		overflow: hidden;
 	}
+
+	.v4mp-cursor, .cursor-trail {
+		display: none !important;
+	}
+
+	html, body, *, *::before, *::after {
+		cursor: auto !important;
+	}
 }
 
 /* --- КАРТОЧКИ ПРОЕКТОВ (projects.html) --- */
